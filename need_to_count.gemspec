@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = NeedToCount::VERSION
   s.authors     = ["unpatioli"]
   s.email       = ["unpatioli@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "http://github.com/unpatioli/need_to_count"
+  s.summary     = "Conditional counter_cache for Ruby on Rails"
+  s.description = "Conditional counter_cache for Ruby on Rails which allows parent model to count child models using condition"
 
   s.rubyforge_project = "need_to_count"
 
