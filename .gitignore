@@ -78,6 +78,7 @@ local.properties
 #########
 .*
 !.gitignore
+!.rvmrc
 *~
 
 # KDE
