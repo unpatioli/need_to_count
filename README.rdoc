@@ -4,7 +4,7 @@
 
 == Installation
 
-In *Rails 3*, add this to your Gemfile
+In <b>Rails 3</b>, add this to your Gemfile
 
     gem "need_to_count", :git => 'git://github.com/unpatioli/need_to_count.git'
 
@@ -48,7 +48,7 @@ And now you can count public blog posts like this:
 == _counts_ method
 
 counts method takes the following parameters:
-* *association name* to count models from
-* *hash of parameters*
+* <b>association name</b> to count models from
+* <b>hash of parameters</b>
   * *in*: name of counter field
 * *block* taking model to determine if it satisfies the counter condition
