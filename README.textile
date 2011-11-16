@@ -1,0 +1,54 @@
+h1. need_to_count
+
+*need_to_count* is a library which extends active_record to enable conditional counter_cache functionality.
+
+h2. Installation
+
+In *Rails 3*, add this to your Gemfile
+
+  gem "need_to_count", :git => 'git://github.com/unpatioli/need_to_count.git'
+
+h2. Getting started example
+
+Let's asume you have two models Blog and Post:
+
+  class Blog < ActiveRecord::Base
+    has_many :posts
+  end
+  
+  class Post < ActiveRecord::Base
+    belongs_to :blog
+  end
+
+To count all posts in current blog without running database COUNT in every request you can define _counter_cache_ in Post model
+  
+  class Post < ActiveRecord::Base
+    belongs_to :blog, :counter_cache => true
+  end
+
+But this will count _all_ posts which are associated with your Blog. And what if you have _is_private_ attribute in your Post and you wand to count only public (post.is_private == false) posts?
+
+h3. Enter need_to_count
+
+need_to_count defines new class method called *counts*. 
+
+    class Blog < ActiveRecord::Base
+      has_many :posts
+      counts(:posts, :in => :public_posts_count) { |post| not post.is_private }
+    end
+  
+This example adds a new attribute _public_posts_count_ to the Blog model. 
+
+As with normal counter_cache in order this to work you need to manually add _public_posts_count_ into your blogs table. It will be updated automatically when you add/remove posts within your blog or change its status.
+
+And now you can count public blog posts like this:
+
+  blog.public_posts_count
+
+h2. _counts_ method
+
+counts method takes the following parameters:
+* *association name* to count models from
+* *hash of parameters*
+** *in*: name of counter field
+* *block*, taking model to determine if it satisfies the counter condition
